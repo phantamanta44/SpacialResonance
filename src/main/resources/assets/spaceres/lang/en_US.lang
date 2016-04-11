@@ -1,0 +1,8 @@
+itemGroup.tab_spaceres=Spacial Resonance
+
+spaceres.itemInfo.noTag=Uninitialized
+spaceres.itemInfo.charge=Charge
+spaceres.itemInfo.expand=Press %s for more info.
+
+spaceres.tooltip.energyStored=Energy
+spaceres.tooltip.empty=Empty

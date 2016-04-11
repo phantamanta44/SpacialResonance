@@ -1,0 +1,16 @@
+[
+{
+  "modid": "spaceres",
+  "name": "Spacial Resonance",
+  "description": "Large-scale energy storage",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Phanta"],
+  "credits": "CoFH for their magnificant redstone flux API, Vazkii for the excellent framework code",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["CoFHCore", "ThermalFoundation"]
+}
+]
