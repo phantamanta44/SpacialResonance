@@ -4,9 +4,11 @@ import io.github.phantamanta44.spaceres.energy.DeviceAddress;
 import io.github.phantamanta44.spaceres.energy.IResonancePacketReceiver;
 import io.github.phantamanta44.spaceres.energy.ResonancePacket;
 import io.github.phantamanta44.spaceres.energy.ResonancePacket.PacketType;
+import io.github.phantamanta44.spaceres.lib.LibNBT;
 import io.github.phantamanta44.spaceres.lib.LibTier;
 import io.github.phantamanta44.spaceres.util.PhantaUtil;
 import io.github.phantamanta44.spaceres.util.impl.ThrottledEnergy;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyReceiver;
 
@@ -14,7 +16,7 @@ public class TileAcceptionBus extends TileMod implements IEnergyReceiver, IReson
 	
 	private ThrottledEnergy rfBuffer;
 	private DeviceAddress address = new DeviceAddress("nil");
-	private DeviceAddress accum = new DeviceAddress("nil");
+	private DeviceAddress distro = new DeviceAddress("nil");
 	
 	public TileAcceptionBus(LibTier tier) {
 		switch (tier) {
@@ -40,7 +42,7 @@ public class TileAcceptionBus extends TileMod implements IEnergyReceiver, IReson
 	protected void tick() {
 		if (rfBuffer.getEnergyStored() > 0) {
 			ResonancePacket reqPacket = new ResonancePacket(
-					address, accum, PacketType.IMPORT_REQ,
+					address, distro, PacketType.IMPORT_REQ,
 					rfBuffer.extractEnergyTrue(rfBuffer.getEnergyStored(), false)
 					);
 			PhantaUtil.iterAdjTiles(this, (t, d) -> {
@@ -82,4 +84,18 @@ public class TileAcceptionBus extends TileMod implements IEnergyReceiver, IReson
 			rfBuffer.receiveEnergyTrue(packet.data, false);
 	}
 
+	@Override
+	public void writeToNBT(NBTTagCompound tag) {
+		rfBuffer.writeToNBT(tag);
+		tag.setString(LibNBT.ADDR_SELF, address.toString());
+		tag.setString(LibNBT.ADDR_TARGET, distro.toString());
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		rfBuffer.readFromNBT(tag);
+		address = new DeviceAddress(tag.getString(LibNBT.ADDR_SELF));
+		distro = new DeviceAddress(tag.getString(LibNBT.ADDR_TARGET));
+	}
+	
 }

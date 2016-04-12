@@ -4,9 +4,11 @@ import io.github.phantamanta44.spaceres.energy.DeviceAddress;
 import io.github.phantamanta44.spaceres.energy.IResonancePacketReceiver;
 import io.github.phantamanta44.spaceres.energy.ResonancePacket;
 import io.github.phantamanta44.spaceres.energy.ResonancePacket.PacketType;
+import io.github.phantamanta44.spaceres.lib.LibNBT;
 import io.github.phantamanta44.spaceres.lib.LibTier;
 import io.github.phantamanta44.spaceres.util.PhantaUtil;
 import io.github.phantamanta44.spaceres.util.impl.ThrottledEnergy;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyProvider;
 
@@ -80,6 +82,20 @@ public class TileExportionBus extends TileMod implements IEnergyProvider, IReson
 	public void receivePacket(ResonancePacket packet) {
 		if (packet.type == PacketType.EXPORT_ACK && packet.receive(this))
 			this.rfBuffer.receiveEnergyTrue(packet.data, false);
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound tag) {
+		rfBuffer.writeToNBT(tag);
+		tag.setString(LibNBT.ADDR_SELF, address.toString());
+		tag.setString(LibNBT.ADDR_TARGET, accum.toString());
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		rfBuffer.readFromNBT(tag);
+		address = new DeviceAddress(tag.getString(LibNBT.ADDR_SELF));
+		accum = new DeviceAddress(tag.getString(LibNBT.ADDR_TARGET));
 	}
 
 }
