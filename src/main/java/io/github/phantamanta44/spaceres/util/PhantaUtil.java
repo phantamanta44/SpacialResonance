@@ -1,10 +1,14 @@
 package io.github.phantamanta44.spaceres.util;
 
+import java.util.function.BiConsumer;
+
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import org.lwjgl.input.Keyboard;
 
@@ -29,6 +33,21 @@ public class PhantaUtil {
 	
 	public static boolean isMouseOver(int x, int y, int width, int height, int mX, int mY) {
 		return mX >= x - 1 && mX < x + width + 1 && mY >= y - 1 && mY < y + height + 1;
+	}
+	
+	public static void iterAdjTiles(TileEntity tile, BiConsumer<TileEntity, ForgeDirection> func) {
+		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+			TileEntity adj = getAdjTile(tile, dir);
+			if (adj != null)
+				func.accept(adj, dir);
+		}
+	}
+	
+	public static TileEntity getAdjTile(TileEntity tile, ForgeDirection face) {
+		return tile.getWorldObj().getTileEntity(
+				tile.xCoord + face.offsetX,
+				tile.yCoord + face.offsetY,
+				tile.zCoord + face.offsetZ);
 	}
 	
 	public static String getKeyName(KeyBinding bind) {

@@ -1,6 +1,7 @@
-package io.github.phantamanta44.spaceres.util;
+package io.github.phantamanta44.spaceres.util.impl;
 
 import io.github.phantamanta44.spaceres.lib.LibNBT;
+import io.github.phantamanta44.spaceres.util.INBTSerializable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
