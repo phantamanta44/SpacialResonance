@@ -7,6 +7,7 @@ import io.github.phantamanta44.spaceres.handler.GuiHandler;
 import io.github.phantamanta44.spaceres.item.SRItems;
 import io.github.phantamanta44.spaceres.tile.TileAcceptionBus;
 import io.github.phantamanta44.spaceres.tile.TileExportionBus;
+import io.github.phantamanta44.spaceres.tile.TileResonanceChannel;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
@@ -33,6 +34,7 @@ public class CommonProxy {
 	protected void registerTileEntities() {
 		addTEMapping(TileAcceptionBus.class);
 		addTEMapping(TileExportionBus.class);
+		addTEMapping(TileResonanceChannel.class);
 	}
 	
 	protected void registerContainers() {

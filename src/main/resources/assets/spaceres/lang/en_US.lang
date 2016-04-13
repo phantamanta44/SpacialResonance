@@ -1,5 +1,8 @@
 itemGroup.tab_spaceres=Spacial Resonance
 
+item.spaceres:blockResChannel.name=Resonance Channel
+item.spaceres:blockBusAccept.name=Acceptance Bus
+
 spaceres.itemInfo.noTag=Uninitialized
 spaceres.itemInfo.charge=Charge
 spaceres.itemInfo.expand=Press %s for more info.

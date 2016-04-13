@@ -1,22 +1,14 @@
 package io.github.phantamanta44.spaceres.tile;
 
-import io.github.phantamanta44.spaceres.energy.DeviceAddress;
-import io.github.phantamanta44.spaceres.energy.IResonancePacketReceiver;
-import io.github.phantamanta44.spaceres.energy.ResonancePacket;
-import io.github.phantamanta44.spaceres.energy.ResonancePacket.PacketType;
-import io.github.phantamanta44.spaceres.lib.LibNBT;
 import io.github.phantamanta44.spaceres.lib.LibTier;
-import io.github.phantamanta44.spaceres.util.PhantaUtil;
 import io.github.phantamanta44.spaceres.util.impl.ThrottledEnergy;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyReceiver;
 
-public class TileAcceptionBus extends TileMod implements IEnergyReceiver, IResonancePacketReceiver {
+public class TileAcceptionBus extends TileNetworkable implements IEnergyReceiver {
 	
 	private ThrottledEnergy rfBuffer;
-	private DeviceAddress address = new DeviceAddress("nil");
-	private DeviceAddress distro = new DeviceAddress("nil");
 	
 	public TileAcceptionBus(LibTier tier) {
 		switch (tier) {
@@ -41,15 +33,7 @@ public class TileAcceptionBus extends TileMod implements IEnergyReceiver, IReson
 	@Override
 	protected void tick() {
 		if (rfBuffer.getEnergyStored() > 0) {
-			ResonancePacket reqPacket = new ResonancePacket(
-					address, distro, PacketType.IMPORT_REQ,
-					rfBuffer.extractEnergyTrue(rfBuffer.getEnergyStored(), false)
-					);
-			PhantaUtil.iterAdjTiles(this, (t, d) -> {
-				if (t == null || !(t instanceof IResonancePacketReceiver))
-					return;
-				((IResonancePacketReceiver)t).receivePacket(reqPacket);
-			});
+			// distribute
 		}
 	}
 
@@ -74,28 +58,15 @@ public class TileAcceptionBus extends TileMod implements IEnergyReceiver, IReson
 	}
 
 	@Override
-	public DeviceAddress getAddress() {
-		return address;
-	}
-
-	@Override
-	public void receivePacket(ResonancePacket packet) {
-		if (packet.type == PacketType.IMPORT_ACK && packet.receive(this))
-			rfBuffer.receiveEnergyTrue(packet.data, false);
-	}
-
-	@Override
 	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
 		rfBuffer.writeToNBT(tag);
-		tag.setString(LibNBT.ADDR_SELF, address.toString());
-		tag.setString(LibNBT.ADDR_TARGET, distro.toString());
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
 		rfBuffer.readFromNBT(tag);
-		address = new DeviceAddress(tag.getString(LibNBT.ADDR_SELF));
-		distro = new DeviceAddress(tag.getString(LibNBT.ADDR_TARGET));
 	}
 	
 }

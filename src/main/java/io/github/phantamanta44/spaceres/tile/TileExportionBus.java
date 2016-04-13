@@ -1,22 +1,14 @@
 package io.github.phantamanta44.spaceres.tile;
 
-import io.github.phantamanta44.spaceres.energy.DeviceAddress;
-import io.github.phantamanta44.spaceres.energy.IResonancePacketReceiver;
-import io.github.phantamanta44.spaceres.energy.ResonancePacket;
-import io.github.phantamanta44.spaceres.energy.ResonancePacket.PacketType;
-import io.github.phantamanta44.spaceres.lib.LibNBT;
 import io.github.phantamanta44.spaceres.lib.LibTier;
-import io.github.phantamanta44.spaceres.util.PhantaUtil;
 import io.github.phantamanta44.spaceres.util.impl.ThrottledEnergy;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyProvider;
 
-public class TileExportionBus extends TileMod implements IEnergyProvider, IResonancePacketReceiver {
+public class TileExportionBus extends TileNetworkable implements IEnergyProvider {
 	
 	private ThrottledEnergy rfBuffer;
-	private DeviceAddress address = new DeviceAddress("nil");
-	private DeviceAddress accum = new DeviceAddress("nil");
 	
 	public TileExportionBus(LibTier tier) {
 		switch (tier) {
@@ -41,15 +33,7 @@ public class TileExportionBus extends TileMod implements IEnergyProvider, IReson
 	@Override
 	protected void tick() {
 		if (rfBuffer.getEnergyStored() != rfBuffer.getMaxEnergyStored()) {
-			ResonancePacket reqPacket = new ResonancePacket(
-					address, accum, PacketType.EXPORT_REQ,
-					rfBuffer.getMaxEnergyStored() - rfBuffer.getEnergyStored()
-					);
-			PhantaUtil.iterAdjTiles(this, (t, d) -> {
-				if (t == null || !(t instanceof IResonancePacketReceiver))
-					return;
-				((IResonancePacketReceiver)t).receivePacket(reqPacket);
-			});
+			// pull
 		}
 	}
 
@@ -72,30 +56,17 @@ public class TileExportionBus extends TileMod implements IEnergyProvider, IReson
 	public int getMaxEnergyStored(ForgeDirection from) {
 		return rfBuffer.getMaxEnergyStored();
 	}
-
-	@Override
-	public DeviceAddress getAddress() {
-		return address;
-	}
-
-	@Override
-	public void receivePacket(ResonancePacket packet) {
-		if (packet.type == PacketType.EXPORT_ACK && packet.receive(this))
-			this.rfBuffer.receiveEnergyTrue(packet.data, false);
-	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
 		rfBuffer.writeToNBT(tag);
-		tag.setString(LibNBT.ADDR_SELF, address.toString());
-		tag.setString(LibNBT.ADDR_TARGET, accum.toString());
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
 		rfBuffer.readFromNBT(tag);
-		address = new DeviceAddress(tag.getString(LibNBT.ADDR_SELF));
-		accum = new DeviceAddress(tag.getString(LibNBT.ADDR_TARGET));
 	}
 
 }

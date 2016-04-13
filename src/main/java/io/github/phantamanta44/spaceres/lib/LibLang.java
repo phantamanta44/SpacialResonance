@@ -16,6 +16,9 @@ public class LibLang {
 	public static final String TT_EMPTY = TT_KEY + "empty";
 	
 	public static final String PLAYER_INV = "container.inventory";
+
+	public static final String BLOCK_RES_CHAN_NAME = "blockResChannel";
+	public static final String BLOCK_BUS_ACC_NAME = "blockBusAccept";
 	
 	public static String get(String key) {
 		return StatCollector.translateToLocal(key);
