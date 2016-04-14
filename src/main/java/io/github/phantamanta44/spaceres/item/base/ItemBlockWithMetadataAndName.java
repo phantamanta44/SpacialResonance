@@ -1,4 +1,4 @@
-package io.github.phantamanta44.spaceres.item.block;
+package io.github.phantamanta44.spaceres.item.base;
 
 import io.github.phantamanta44.spaceres.lib.LibCore;
 import net.minecraft.block.Block;

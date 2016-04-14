@@ -1,6 +1,7 @@
 package io.github.phantamanta44.spaceres.util;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 
 public class BlockWithMeta {
@@ -29,6 +30,14 @@ public class BlockWithMeta {
 	
 	public int getMeta() {
 		return meta;
+	}
+	
+	public ItemStack getStack() {
+		return getStack(1);
+	}
+	
+	public ItemStack getStack(int size) {
+		return new ItemStack(block, size, meta);
 	}
 	
 	public boolean equals(Object o) {

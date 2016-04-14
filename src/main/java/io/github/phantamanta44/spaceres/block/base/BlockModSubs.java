@@ -1,6 +1,6 @@
-package io.github.phantamanta44.spaceres.block;
+package io.github.phantamanta44.spaceres.block.base;
 
-import io.github.phantamanta44.spaceres.item.block.ItemBlockWithMetadataAndName;
+import io.github.phantamanta44.spaceres.item.base.ItemBlockWithMetadataAndName;
 import io.github.phantamanta44.spaceres.lib.LibCore;
 import io.github.phantamanta44.spaceres.util.IconHelper;
 

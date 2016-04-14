@@ -1,4 +1,4 @@
-package io.github.phantamanta44.spaceres.tile;
+package io.github.phantamanta44.spaceres.tile.base;
 
 import io.github.phantamanta44.spaceres.energy.INetworkable;
 import io.github.phantamanta44.spaceres.energy.ResonanceNetwork;
@@ -10,7 +10,14 @@ public class TileNetworkable extends TileMod implements INetworkable {
 	
 	@Override
 	protected void tick() {
-		if (!init || network == null) {
+		if (network == null)
+			updateNetwork();
+	}
+	
+	@Override
+	public void updateEntity() {
+		super.updateEntity();
+		if (!init) {
 			updateNetwork();
 			init = true;
 		}
@@ -20,10 +27,8 @@ public class TileNetworkable extends TileMod implements INetworkable {
 		if (network == null) {
 			PhantaUtil.iterAdjTiles(this, (t, d) -> {
 				if (t instanceof INetworkable) {
-					if (network == null) {
+					if (network == null)
 						network = ((INetworkable)t).getNetwork();
-						network.join(this);
-					}
 					else
 						((INetworkable)t).getNetwork().merge(network);
 				}

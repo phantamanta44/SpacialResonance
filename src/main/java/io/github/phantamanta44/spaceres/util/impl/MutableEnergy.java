@@ -7,7 +7,7 @@ import cofh.api.energy.IEnergyStorage;
 
 public class MutableEnergy implements IEnergyStorage, INBTSerializable {
 
-	private int rf, max;
+	protected int rf, max;
 	
 	public MutableEnergy(int max) {
 		this.max = max;

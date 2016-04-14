@@ -1,6 +1,8 @@
 package io.github.phantamanta44.spaceres.tile;
 
+import io.github.phantamanta44.spaceres.energy.INetworkable;
 import io.github.phantamanta44.spaceres.lib.LibTier;
+import io.github.phantamanta44.spaceres.tile.base.TileNetworkable;
 import io.github.phantamanta44.spaceres.util.impl.ThrottledEnergy;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -11,29 +13,16 @@ public class TileAcceptionBus extends TileNetworkable implements IEnergyReceiver
 	private ThrottledEnergy rfBuffer;
 	
 	public TileAcceptionBus(LibTier tier) {
-		switch (tier) {
-		case LEADSTONE:
-			this.rfBuffer = new ThrottledEnergy(400, 0, 80, 0);
-			break;
-		case INVAR:
-			this.rfBuffer = new ThrottledEnergy(5000, 0, 400, 0);
-			break;
-		case ELECTRUM:
-			this.rfBuffer = new ThrottledEnergy(12000, 0, 3000, 0);
-			break;
-		case ENDERIUM:
-			this.rfBuffer = new ThrottledEnergy(40000, 0, 12000, 0);
-			break;
-		default:
-			this.rfBuffer = new ThrottledEnergy(8888, 88, 88, 88);
-			break;
-		}
+		this.rfBuffer = new ThrottledEnergy(tier.buffer, 0, tier.transfer, 0);
 	}
 	
 	@Override
 	protected void tick() {
+		super.tick();
 		if (rfBuffer.getEnergyStored() > 0) {
-			// distribute
+			INetworkable dist = network.findUnit(u -> u instanceof TileDistributor);
+			if (dist != null)
+				rfBuffer.extractEnergyTrue(((TileDistributor)dist).distribute(rfBuffer.getEnergyStored()), false);
 		}
 	}
 

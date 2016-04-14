@@ -1,7 +1,30 @@
 itemGroup.tab_spaceres=Spacial Resonance
 
-item.spaceres:blockResChannel.name=Resonance Channel
-item.spaceres:blockBusAccept.name=Acceptance Bus
+tile.spaceres:blockResChannel0.name=Resonance Channel
+tile.spaceres:blockBusAccept0.name=Rudimentary Tau Transducer
+tile.spaceres:blockBusAccept1.name=Capacitive Tau Transducer
+tile.spaceres:blockBusAccept2.name=Low-Frequency Tau Acceptance Bus
+tile.spaceres:blockBusAccept3.name=High-Frequency Tau Acceptance Bus
+tile.spaceres:blockBusExport0.name=Rudimentary Tau Actuator
+tile.spaceres:blockBusExport1.name=Capacitive Tau Actuator
+tile.spaceres:blockBusExport2.name=Low-Frequency Tau Exportion Bus
+tile.spaceres:blockBusExport3.name=High-Frequency Tau Exportion Bus
+tile.spaceres:blockDistributor0.name=Rudimentary Kinetic Distribution Processor
+tile.spaceres:blockDistributor1.name=Capacitive Kinetic Distribution Processor
+tile.spaceres:blockDistributor2.name=Low-Frequency Kinetic Distribution Processor
+tile.spaceres:blockDistributor3.name=High-Frequency Kinetic Distribution Processor
+tile.spaceres:blockAccumulator0.name=Rudimentary Energy Accumulation Processor
+tile.spaceres:blockAccumulator1.name=Capacitive Energy Accumulation Processor
+tile.spaceres:blockAccumulator2.name=Low-Frequency Energy Accumulation Processor
+tile.spaceres:blockAccumulator3.name=High-Frequency Energy Accumulation Processor
+tile.spaceres:blockOre0.name=Cattierite Ore
+tile.spaceres:blockCompressed0.name=Compressed Cobalt
+
+item.spaceres:itemResource0.name=Cobalt Ingot
+item.spaceres:itemResource1.name=Cobalt Dust
+item.spaceres:itemResource2.name=Cobalt Nugget
+item.spaceres:itemMaterial0.name=Crystalline Tau Transformer
+item.spaceres:itemMaterial1.name=Resonance-Conducting Alloy
 
 spaceres.itemInfo.noTag=Uninitialized
 spaceres.itemInfo.charge=Charge

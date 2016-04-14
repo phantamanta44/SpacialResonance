@@ -9,10 +9,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public final class MasterRecipeManager {
 	
 	public static void addRecipes() {
-		
+		IngotRecipeManager.addRecipes();
 	}
 
-	protected static void addSmelting(ItemStack output, ItemStack input, int xp) {
+	protected static void addSmelting(ItemStack output, ItemStack input, float xp) {
 		GameRegistry.addSmelting(input, output, xp);
 	}
 	

@@ -1,4 +1,4 @@
-package io.github.phantamanta44.spaceres.tile;
+package io.github.phantamanta44.spaceres.tile.base;
 
 import io.github.phantamanta44.spaceres.lib.LibNBT;
 import net.minecraft.entity.player.EntityPlayer;

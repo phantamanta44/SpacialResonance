@@ -1,4 +1,4 @@
-package io.github.phantamanta44.spaceres.item;
+package io.github.phantamanta44.spaceres.item.base;
 
 import io.github.phantamanta44.spaceres.util.IconHelper;
 

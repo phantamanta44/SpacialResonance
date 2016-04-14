@@ -53,5 +53,9 @@ public class PhantaUtil {
 	public static String getKeyName(KeyBinding bind) {
 		return Keyboard.getKeyName(bind.getKeyCode());
 	}
+
+	public static ItemStack copyStack(ItemStack stack, int cnt) {
+		return new ItemStack(stack.getItem(), cnt, stack.getItemDamage());
+	}
 	
 }

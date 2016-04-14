@@ -1,4 +1,4 @@
-package io.github.phantamanta44.spaceres.tile;
+package io.github.phantamanta44.spaceres.tile.base;
 
 import io.github.phantamanta44.spaceres.util.VanillaPacketDispatcher;
 import net.minecraft.nbt.NBTTagCompound;

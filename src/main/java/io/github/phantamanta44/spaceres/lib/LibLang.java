@@ -19,6 +19,14 @@ public class LibLang {
 
 	public static final String BLOCK_RES_CHAN_NAME = "blockResChannel";
 	public static final String BLOCK_BUS_ACC_NAME = "blockBusAccept";
+	public static final String BLOCK_BUS_EXP_NAME = "blockBusExport";
+	public static final String BLOCK_DIST_NAME = "blockDistributor";
+	public static final String BLOCK_ACCUM_NAME = "blockAccumulator";
+	public static final String BLOCK_ORE_NAME = "blockOre";
+	public static final String BLOCK_COMP_NAME = "blockCompressed";
+
+	public static final String ITEM_RESOURCE_NAME = "itemResource";
+	public static final String ITEM_MATERIAL_NAME = "itemMaterial";
 	
 	public static String get(String key) {
 		return StatCollector.translateToLocal(key);

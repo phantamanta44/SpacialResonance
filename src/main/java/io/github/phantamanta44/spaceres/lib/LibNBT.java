@@ -9,6 +9,7 @@ public class LibNBT {
 	
 	public static final String ENERGY = "EnergyStored";
 	public static final String ENERGY_MAX = "EnergyLimit";
+	public static final String ENERGY_RATE = "EnergyRate";
 	public static final String ENERGY_RATE_IN = "EnergyIntakeRate";
 	public static final String ENERGY_RATE_OUT = "EnergyOutputRate";
 	
@@ -16,8 +17,7 @@ public class LibNBT {
 	public static final String TANK_FLUID_STACK = "TankStack";
 	public static final String TANK_CAP = "TankCapacity";
 	
-	public static final String ADDR_SELF = "DevAddress";
-	public static final String ADDR_TARGET = "DevAddressTarget";
-	public static final String ADDR_TARGETS = "DevAddressTargets";
+	public static final String DEV_COUNT = "DeviceCount";
+	public static final String EQUAL_MODE = "EqualizeMode";
 	
 }

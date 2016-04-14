@@ -1,10 +1,11 @@
 package io.github.phantamanta44.spaceres;
 
+import io.github.phantamanta44.spaceres.item.ItemMaterial;
+import io.github.phantamanta44.spaceres.item.SRItems;
 import io.github.phantamanta44.spaceres.lib.LibCore;
 import io.github.phantamanta44.spaceres.lib.LibLang;
 import io.github.phantamanta44.spaceres.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.Mod;
@@ -49,12 +50,12 @@ public class SpaceRes {
 		
 		@Override
 		public ItemStack getIconItemStack() {
-			return new ItemStack(Blocks.redstone_block);
+			return new ItemStack(SRItems.itemMat, 1, ItemMaterial.TAU_CONV);
 		}
 		
 		@Override
 		public Item getTabIconItem() {
-			return Item.getItemFromBlock(Blocks.redstone_block);
+			return SRItems.itemMat;
 		}
 		
 	}

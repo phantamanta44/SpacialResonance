@@ -5,7 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class ThrottledEnergy extends MutableEnergy {
 
-	private int rf, max, inRate, outRate;
+	private int inRate, outRate;
 	
 	public ThrottledEnergy(int max) {
 		super(max);

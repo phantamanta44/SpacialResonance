@@ -14,23 +14,17 @@ import net.minecraft.tileentity.TileEntity;
 
 public class ResonanceNetwork {
 
+	private static final Predicate<INetworkable> NULL_FILTER = i -> i != null;
 	private List<INetworkable> members = new CopyOnWriteArrayList<>();
 	private Set<TileEntity> scanned = new HashSet<>();
 	
 	public ResonanceNetwork(INetworkable init) {
-		join(init);
-	}
-
-	public void join(INetworkable member) {
-		members.add(member);
-	}
-	
-	public void unjoin(INetworkable member) {
-		members.remove(member);
+		members.add(init);
 	}
 
 	public void merge(ResonanceNetwork network) {
 		network.members.forEach(m -> m.setNetwork(this));
+		rescan();
 	}
 
 	public void rescan() {
@@ -55,8 +49,11 @@ public class ResonanceNetwork {
 	
 	private void scan(TileEntity tile) {
 		scanned.add(tile);
-		if (tile instanceof INetworkable)
-			members.add((INetworkable)tile);
+		if (tile instanceof INetworkable) {
+			INetworkable member = (INetworkable)tile;
+			members.add(member);
+			member.setNetwork(this);
+		}
 		PhantaUtil.iterAdjTiles(tile, (t, f) -> {
 			if (!scanned.contains(t))
 				scan(t);
@@ -65,7 +62,7 @@ public class ResonanceNetwork {
 	
 	public INetworkable findUnit(Predicate<INetworkable> filter) {
 		return members.stream()
-				.filter(filter)
+				.filter(NULL_FILTER.and(filter))
 				.findAny().orElse(null);
 	}
 	

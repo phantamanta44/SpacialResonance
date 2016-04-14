@@ -126,6 +126,13 @@ public class LibDict {
 	public static final String GEAR_ELEC = GEAR + ELEC;
 	public static final String BLOCK_ELEC = BLOCK + ELEC;
 	
+	public static final String COBALT = "Cobalt";
+	public static final String INGOT_COBALT = INGOT + COBALT;
+	public static final String DUST_COBALT = DUST + COBALT;
+	public static final String NUGGET_COBALT = NUGGET + COBALT;
+	public static final String GEAR_COBALT = GEAR + COBALT;
+	public static final String BLOCK_COBALT = BLOCK + COBALT;
+	
 	public static final String COAL = "Coal";
 	public static final String DUST_COAL = DUST + COAL;
 	public static final String BLOCK_COAL = BLOCK + COAL;
