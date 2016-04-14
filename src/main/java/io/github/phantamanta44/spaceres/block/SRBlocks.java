@@ -7,6 +7,8 @@ public final class SRBlocks {
 	public static Block resChan;
 	public static Block busAcc;
 	public static Block busExp;
+	public static Block dist;
+	public static Block accum;
 	public static Block ore;
 	public static Block comp;
 	
@@ -14,6 +16,8 @@ public final class SRBlocks {
 		resChan = new BlockResonanceChannel();
 		busAcc = new BlockAcceptionBus();
 		busExp = new BlockExportionBus();
+		dist = new BlockDistributionProcessor();
+		accum = new BlockAccumulationProcessor();
 		ore = new BlockOre();
 		comp = new BlockCompressed();
 	}
