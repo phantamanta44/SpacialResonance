@@ -2,6 +2,7 @@ package io.github.phantamanta44.spaceres.tile;
 
 import io.github.phantamanta44.spaceres.energy.INetworkable;
 import io.github.phantamanta44.spaceres.lib.LibTier;
+import io.github.phantamanta44.spaceres.tile.base.IEnergyTile;
 import io.github.phantamanta44.spaceres.tile.base.TileNetworkable;
 import io.github.phantamanta44.spaceres.util.PhantaUtil;
 import io.github.phantamanta44.spaceres.util.impl.ThrottledEnergy;
@@ -13,10 +14,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyProvider;
 import cofh.api.energy.IEnergyReceiver;
+import cofh.api.energy.IEnergyStorage;
 
-public class TileExportionBus extends TileNetworkable implements IEnergyProvider {
+public class TileExportionBus extends TileNetworkable implements IEnergyProvider, IEnergyTile {
 	
 	private ThrottledEnergy rfBuffer;
+	
+	public TileExportionBus() {
+		rfBuffer = new ThrottledEnergy(0);
+	}
 	
 	public TileExportionBus(LibTier tier) {
 		this.rfBuffer = new ThrottledEnergy(tier.buffer, 0, 0, tier.transfer);
@@ -71,6 +77,11 @@ public class TileExportionBus extends TileNetworkable implements IEnergyProvider
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		rfBuffer.readFromNBT(tag);
+	}
+
+	@Override
+	public IEnergyStorage getEnergyStorage() {
+		return rfBuffer;
 	}
 
 }

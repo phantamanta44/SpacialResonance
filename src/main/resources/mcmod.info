@@ -11,6 +11,6 @@
   "credits": "CoFH for their magnificant redstone flux API, Vazkii for the excellent framework code",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": ["CoFHCore", "ThermalFoundation"]
+  "dependencies": ["CoFHCore", "ThermalFoundation", "ThermalExpansion"]
 }
 ]

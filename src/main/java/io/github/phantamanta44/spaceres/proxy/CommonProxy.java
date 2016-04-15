@@ -4,6 +4,7 @@ import io.github.phantamanta44.spaceres.SpaceRes;
 import io.github.phantamanta44.spaceres.block.BlockOre;
 import io.github.phantamanta44.spaceres.block.SRBlocks;
 import io.github.phantamanta44.spaceres.crafting.MasterRecipeManager;
+import io.github.phantamanta44.spaceres.gui.GuiEnergyMeter;
 import io.github.phantamanta44.spaceres.handler.GuiHandler;
 import io.github.phantamanta44.spaceres.item.SRItems;
 import io.github.phantamanta44.spaceres.tile.TileAcceptionBus;
@@ -13,6 +14,7 @@ import io.github.phantamanta44.spaceres.tile.TileExportionBus;
 import io.github.phantamanta44.spaceres.tile.TileResonanceChannel;
 import io.github.phantamanta44.spaceres.util.BlockWithMeta;
 import io.github.phantamanta44.spaceres.worldgen.OreGenSimple;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
@@ -26,7 +28,7 @@ public class CommonProxy {
 		SRItems.init();
 		SRBlocks.init();
 		registerTileEntities();
-		registerContainers();
+		registerGuis();
 	}
 	
 	public void onInit() {
@@ -47,12 +49,17 @@ public class CommonProxy {
 		addTEMapping(TileResonanceChannel.class);
 	}
 	
-	protected void registerContainers() {
-		// TODO Register GUIs and containers
+	protected void registerGuis() {
+		registerGui(TileAcceptionBus.class, GuiEnergyMeter.class);
+		registerGui(TileExportionBus.class, GuiEnergyMeter.class);
+	}
+	
+	protected void registerGui(Class<? extends TileEntity> tile, Class<? extends GuiScreen> gui) {
+		GuiHandler.guiMap.put(tile, gui);
 	}
 	
 	protected void registerContainer(Class<? extends TileEntity> tile, Class<? extends GuiContainer> gui, Class<? extends Container> cont) {
-		GuiHandler.guiMap.put(tile, gui);
+		registerGui(tile, gui);
 		GuiHandler.containerMap.put(tile, cont);
 	}
 	

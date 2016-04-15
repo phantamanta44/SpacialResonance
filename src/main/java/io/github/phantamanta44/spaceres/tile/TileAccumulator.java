@@ -10,6 +10,10 @@ public class TileAccumulator extends TileNetworkable {
 	private int devices;
 	private boolean equalMode = false;
 	
+	public TileAccumulator() {
+		// NO-OP
+	}
+	
 	public TileAccumulator(LibTier tier) {
 		devices = tier.devices;
 	}

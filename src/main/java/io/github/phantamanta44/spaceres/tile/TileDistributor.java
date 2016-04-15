@@ -10,6 +10,10 @@ public class TileDistributor extends TileNetworkable {
 	private int maxTrans, devices;
 	private boolean equalMode = false;
 	
+	public TileDistributor() {
+		// NO-OP
+	}
+	
 	public TileDistributor(LibTier tier) {
 		maxTrans = tier.transfer;
 		devices = tier.devices;

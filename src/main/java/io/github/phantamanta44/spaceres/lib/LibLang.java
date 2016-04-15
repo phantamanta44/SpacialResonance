@@ -27,6 +27,8 @@ public class LibLang {
 
 	public static final String ITEM_RESOURCE_NAME = "itemResource";
 	public static final String ITEM_MATERIAL_NAME = "itemMaterial";
+
+	public static final String GUI_KEY = LibCore.MODID + ".gui.";
 	
 	public static String get(String key) {
 		return StatCollector.translateToLocal(key);

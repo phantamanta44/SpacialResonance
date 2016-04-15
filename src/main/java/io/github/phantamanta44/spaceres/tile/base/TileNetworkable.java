@@ -10,8 +10,11 @@ public class TileNetworkable extends TileMod implements INetworkable {
 	
 	@Override
 	protected void tick() {
-		if (network == null)
-			updateNetwork();
+		if (!worldObj.isRemote) {
+			if (network == null)
+				updateNetwork();
+			markForUpdate();
+		}
 	}
 	
 	@Override
@@ -27,10 +30,13 @@ public class TileNetworkable extends TileMod implements INetworkable {
 		if (network == null) {
 			PhantaUtil.iterAdjTiles(this, (t, d) -> {
 				if (t instanceof INetworkable) {
-					if (network == null)
-						network = ((INetworkable)t).getNetwork();
-					else
-						((INetworkable)t).getNetwork().merge(network);
+					INetworkable target = (INetworkable)t;
+					if (target.getNetwork() != null) {
+						if (network == null)
+							network = target.getNetwork();
+						else
+							target.getNetwork().merge(network);
+					}
 				}
 			});
 			if (network == null)

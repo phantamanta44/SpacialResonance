@@ -1,17 +1,14 @@
 package io.github.phantamanta44.spaceres.block;
 
+import io.github.phantamanta44.spaceres.SpaceRes;
 import io.github.phantamanta44.spaceres.block.base.BlockNetworkable;
 import io.github.phantamanta44.spaceres.item.block.ItemBlockResonanceDevice;
 import io.github.phantamanta44.spaceres.lib.LibLang;
 import io.github.phantamanta44.spaceres.lib.LibTier;
 import io.github.phantamanta44.spaceres.tile.TileAcceptionBus;
-import io.github.phantamanta44.spaceres.tile.base.TileNetworkable;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -36,6 +33,15 @@ public class BlockAcceptionBus extends BlockNetworkable {
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileAcceptionBus(LibTier.getTier4(meta));
+	}
+	
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ) {
+		if (player.isSneaking())
+			return false;
+		if (!world.isRemote)
+			player.openGui(SpaceRes.instance, 255, world, x, y, z);
+		return true;
 	}
 	
 }
