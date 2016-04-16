@@ -14,7 +14,6 @@ public class GCEnergyReservoir extends GuiComponent {
 	
 	private static final int[] COLOUR_A = new int[] {17, 111, 177}, COLOUR_B = new int[] {42, 157, 237};
 	private IEnergyStorage esource;
-	private float wave = 0.4F;
 	
 	public GCEnergyReservoir(int x, int y, int width, int length, IEnergyStorage ec) {
 		super(x, y, width, length);

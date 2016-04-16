@@ -19,5 +19,6 @@ public class LibNBT {
 	
 	public static final String DEV_COUNT = "DeviceCount";
 	public static final String EQUAL_MODE = "EqualizeMode";
+	public static final String CONNECTIONS = "Connections";
 	
 }

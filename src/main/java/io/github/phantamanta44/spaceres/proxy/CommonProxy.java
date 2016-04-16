@@ -34,7 +34,7 @@ public class CommonProxy {
 	public void onInit() {
 		MasterRecipeManager.addRecipes();
 		NetworkRegistry.INSTANCE.registerGuiHandler(SpaceRes.instance, new GuiHandler());
-		GameRegistry.registerWorldGenerator(new OreGenSimple(new BlockWithMeta(SRBlocks.ore, BlockOre.COBALT), 0, new BlockWithMeta(Blocks.stone), 1, 28, 6, 4) , 5);
+		GameRegistry.registerWorldGenerator(new OreGenSimple(new BlockWithMeta(SRBlocks.ore, BlockOre.COBALT), 0, new BlockWithMeta(Blocks.stone), 1, 36, 10, 4) , 5);
 	}
 	
 	public void onPostInit() {
