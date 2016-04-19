@@ -1,5 +1,6 @@
 package io.github.phantamanta44.spaceres.energy;
 
+import io.github.phantamanta44.spaceres.energy.INetworkable.INetworkUpdateHook;
 import io.github.phantamanta44.spaceres.util.PhantaUtil;
 
 import java.util.HashSet;
@@ -26,6 +27,12 @@ public class ResonanceNetwork {
 		network.members.forEach(m -> m.setNetwork(this));
 		rescan();
 	}
+	
+	public void drop(INetworkable elem) {
+		members.remove(elem);
+		if (elem instanceof TileEntity)
+			rescan();
+	}
 
 	public void rescan() {
 		Optional<TileEntity> maybeTile = members.stream()
@@ -45,17 +52,18 @@ public class ResonanceNetwork {
 			return;
 		scan(maybeTile.get());
 		scanned.clear();
+		members.stream()
+				.filter(m -> m instanceof INetworkUpdateHook)
+				.forEach(m -> ((INetworkUpdateHook)m).onNetworkUpdate());
 	}
 	
 	private void scan(TileEntity tile) {
 		scanned.add(tile);
-		if (tile instanceof INetworkable) {
-			INetworkable member = (INetworkable)tile;
-			members.add(member);
-			member.setNetwork(this);
-		}
+		INetworkable member = (INetworkable)tile;
+		members.add(member);
+		member.setNetwork(this);
 		PhantaUtil.iterAdjTiles(tile, (t, f) -> {
-			if (!scanned.contains(t))
+			if (t instanceof INetworkable && !scanned.contains(t))
 				scan(t);
 		});
 	}

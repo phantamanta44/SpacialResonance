@@ -55,14 +55,16 @@ public class ResonanceChannelModel extends ModelBase {
 	
 	public void render(TileResonanceChannel tile, float scale) {
 		base.render(scale);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glColor4f(1F, 1F, 1F, 0.85F);
-		baseIn.render(scale);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glColor4f(1F, 1F, 1F, 1F);
+		if (tile.isDataFlowing()) {
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glColor4f(1F, 1F, 1F, 0.85F);
+			baseIn.render(scale);
+			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glColor4f(1F, 1F, 1F, 1F);
+		}
 		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
 			if (tile.isConnection(dir))
-				renderCxn(dir, scale);
+				renderCxn(dir, scale, tile.isDataFlowing());
 		}
 	}
 	
@@ -74,21 +76,23 @@ public class ResonanceChannelModel extends ModelBase {
 		baseIn.render(scale);
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
-		renderCxn(ForgeDirection.UP, scale);
-		renderCxn(ForgeDirection.DOWN, scale);
+		renderCxn(ForgeDirection.UP, scale, true);
+		renderCxn(ForgeDirection.DOWN, scale, true);
 	}
 	
-	private void renderCxn(ForgeDirection dir, float scale) {
+	private void renderCxn(ForgeDirection dir, float scale, boolean in) {
 		cxn.rotateAngleY = ANGLE_Y[dir.ordinal()];
 		cxn.rotateAngleZ = ANGLE_Z[dir.ordinal()];
 		cxn.render(scale);
-		cxnIn.rotateAngleY = ANGLE_Y[dir.ordinal()];
-		cxnIn.rotateAngleZ = ANGLE_Z[dir.ordinal()];
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glColor4f(1F, 1F, 1F, 0.85F);
-		cxnIn.render(scale);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glColor4f(1F, 1F, 1F, 1F);
+		if (in) {
+			cxnIn.rotateAngleY = ANGLE_Y[dir.ordinal()];
+			cxnIn.rotateAngleZ = ANGLE_Z[dir.ordinal()];
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glColor4f(1F, 1F, 1F, 0.85F);
+			cxnIn.render(scale);
+			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glColor4f(1F, 1F, 1F, 1F);
+		}
 	}
 
 }

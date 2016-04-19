@@ -1,6 +1,5 @@
 package io.github.phantamanta44.spaceres.block.base;
 
-import io.github.phantamanta44.spaceres.energy.ResonanceNetwork;
 import io.github.phantamanta44.spaceres.tile.base.TileNetworkable;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -15,10 +14,10 @@ public abstract class BlockNetworkable extends BlockModSubs implements ITileEnti
 
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-		ResonanceNetwork network = ((TileNetworkable)world.getTileEntity(x, y, z)).getNetwork();
+		TileNetworkable tile = ((TileNetworkable)world.getTileEntity(x, y, z));
 		super.breakBlock(world, x, y, z, block, meta);
-		if (network != null)
-			network.rescan();
+		if (tile != null && tile.getNetwork() != null)
+			tile.getNetwork().drop(tile);
 	}
 	
 }

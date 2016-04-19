@@ -17,8 +17,13 @@ public class LibNBT {
 	public static final String TANK_FLUID_STACK = "TankStack";
 	public static final String TANK_CAP = "TankCapacity";
 	
+	public static final String COORD_X = "CoordX";
+	public static final String COORD_Y = "CoordY";
+	public static final String COORD_Z = "CoordZ";
+	
 	public static final String DEV_COUNT = "DeviceCount";
 	public static final String EQUAL_MODE = "EqualizeMode";
 	public static final String CONNECTIONS = "Connections";
+	public static final String DATA_FLOWING = "DataFlowing";
 	
 }

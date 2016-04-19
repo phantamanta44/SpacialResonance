@@ -25,7 +25,7 @@ public class TileAcceptionBus extends TileNetworkable implements IEnergyReceiver
 	@Override
 	protected void tick() {
 		super.tick();
-		if (rfBuffer.getEnergyStored() > 0) {
+		if (!worldObj.isRemote && rfBuffer.getEnergyStored() > 0 && network != null) {
 			INetworkable dist = network.findUnit(u -> u instanceof TileDistributor);
 			if (dist != null)
 				rfBuffer.extractEnergyTrue(((TileDistributor)dist).distribute(rfBuffer.getEnergyStored()), false);

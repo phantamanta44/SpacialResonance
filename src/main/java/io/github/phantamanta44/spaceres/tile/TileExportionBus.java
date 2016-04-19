@@ -31,12 +31,12 @@ public class TileExportionBus extends TileNetworkable implements IEnergyProvider
 	@Override
 	protected void tick() {
 		super.tick();
-		if (rfBuffer.getEnergyStored() != rfBuffer.getMaxEnergyStored()) {
+		if (!worldObj.isRemote && rfBuffer.getEnergyStored() != rfBuffer.getMaxEnergyStored() && network != null) {
 			INetworkable acc = network.findUnit(u -> u instanceof TileAccumulator);
 			if (acc != null)
 				rfBuffer.receiveEnergyTrue(((TileAccumulator)acc).request(rfBuffer.getMaxEnergyStored() - rfBuffer.getEnergyStored()), false);
 		}
-		if (rfBuffer.getEnergyStored() > 0) {
+		if (!worldObj.isRemote && rfBuffer.getEnergyStored() > 0) {
 			final Map<IEnergyReceiver, ForgeDirection> receivers = new HashMap<>();
 			PhantaUtil.iterAdjTiles(this, (t, d) -> {
 				if (t instanceof IEnergyReceiver)

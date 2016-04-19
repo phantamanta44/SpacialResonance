@@ -50,6 +50,21 @@ public class PhantaUtil {
 				tile.zCoord + face.offsetZ);
 	}
 	
+	public static void iterAdjTiles(World world, int x, int y, int z, BiConsumer<TileEntity, ForgeDirection> func) {
+		for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+			TileEntity adj = getAdjTile(world, x, y, z, dir);
+			if (adj != null)
+				func.accept(adj, dir);
+		}
+	}
+	
+	public static TileEntity getAdjTile(World world, int x, int y, int z, ForgeDirection face) {
+		return world.getTileEntity(
+				x + face.offsetX,
+				y + face.offsetY,
+				z + face.offsetZ);
+	}
+	
 	public static String getKeyName(KeyBinding bind) {
 		return Keyboard.getKeyName(bind.getKeyCode());
 	}
