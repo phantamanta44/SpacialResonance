@@ -35,11 +35,15 @@ public class TileInternalStorage extends TileMod implements IDeepEnergyStorage {
 	}
 	
 	public int requestEnergy(int amt) {
-		return energyProxy.extractEnergy(amt, false);
+		int toTransfer = (int)Math.min(amt, stored);
+		stored -= toTransfer;
+		return toTransfer;
 	}
 	
 	public int offerEnergy(int amt) {
-		return energyProxy.receiveEnergy(amt, false);
+		int toTransfer = (int)Math.min(amt, max - stored);
+		stored += toTransfer;
+		return toTransfer;
 	}
 	
 	@Override

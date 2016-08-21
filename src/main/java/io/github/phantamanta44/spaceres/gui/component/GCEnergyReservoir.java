@@ -46,7 +46,7 @@ public class GCEnergyReservoir extends GuiComponent {
 	@Override
 	public void mouseOver(Minecraft mc, GuiScreen gui, int mX, int mY) {
 		if (PhantaUtil.isMouseOver(x, y, width, height, mX, mY))
-			drawHoveringText(gui, String.format("%d / %d RF", esource.getTauStored(), esource.getTauMax()), mX, mY);
+			drawHoveringText(gui, String.format("%s / %s RF", PhantaUtil.formatInt(esource.getTauStored()), PhantaUtil.formatInt(esource.getTauMax())), mX, mY);
 	}
 	
 	private static int getColour(int n, int max) {

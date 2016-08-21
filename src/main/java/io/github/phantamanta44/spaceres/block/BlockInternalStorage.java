@@ -2,21 +2,28 @@ package io.github.phantamanta44.spaceres.block;
 
 import io.github.phantamanta44.spaceres.SpaceRes;
 import io.github.phantamanta44.spaceres.block.base.BlockModSubs;
-import io.github.phantamanta44.spaceres.item.block.ItemBlockResonanceDevice;
+import io.github.phantamanta44.spaceres.block.base.ItemBlockState;
+import io.github.phantamanta44.spaceres.item.block.ItemBlockInternalStorage;
 import io.github.phantamanta44.spaceres.lib.LibLang;
 import io.github.phantamanta44.spaceres.lib.LibTier;
 import io.github.phantamanta44.spaceres.tile.TileInternalStorage;
+
+import java.util.ArrayList;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cofh.api.block.IDismantleable;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class BlockInternalStorage extends BlockModSubs implements ITileEntityProvider {
+@ItemBlockState
+public class BlockInternalStorage extends BlockModSubs implements ITileEntityProvider, IDismantleable {
 
-public static final int LEAD = 0, INVAR = 1, ELECTRUM = 2, SIGN = 3, LUM = 4, ENDER = 5, NUKE = 6, QNT = 7;
+	public static final int LEAD = 0, INVAR = 1, ELECTRUM = 2, SIGN = 3, LUM = 4, ENDER = 5, NUKE = 6, QNT = 7;
 	
 	public BlockInternalStorage() {
 		super(Material.iron, 8);
@@ -27,7 +34,7 @@ public static final int LEAD = 0, INVAR = 1, ELECTRUM = 2, SIGN = 3, LUM = 4, EN
 	
 	@Override
 	public Block setBlockName(String name) {
-		GameRegistry.registerBlock(this, ItemBlockResonanceDevice.class, name);
+		GameRegistry.registerBlock(this, ItemBlockInternalStorage.class, name);
 		return super.setBlockName(name);
 	}
 
@@ -42,6 +49,16 @@ public static final int LEAD = 0, INVAR = 1, ELECTRUM = 2, SIGN = 3, LUM = 4, EN
 			return false;
 		if (!world.isRemote)
 			player.openGui(SpaceRes.instance, 255, world, x, y, z);
+		return true;
+	}
+
+	@Override
+	public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, int x, int y, int z, boolean returnDrops) {
+		return getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+	}
+
+	@Override
+	public boolean canDismantle(EntityPlayer player, World world, int x, int y, int z) {
 		return true;
 	}
 	

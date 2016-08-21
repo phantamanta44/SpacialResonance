@@ -1,7 +1,7 @@
 package io.github.phantamanta44.spaceres.block;
 
 import io.github.phantamanta44.spaceres.block.base.BlockModSubs;
-import io.github.phantamanta44.spaceres.item.block.ItemBlockResonanceDevice;
+import io.github.phantamanta44.spaceres.item.block.ItemBlockResource;
 import io.github.phantamanta44.spaceres.lib.LibCore;
 import io.github.phantamanta44.spaceres.lib.LibLang;
 import net.minecraft.block.Block;
@@ -22,7 +22,7 @@ public class BlockCompressed extends BlockModSubs {
 	
 	@Override
 	public Block setBlockName(String name) {
-		GameRegistry.registerBlock(this, ItemBlockResonanceDevice.class, name);
+		GameRegistry.registerBlock(this, ItemBlockResource.class, name);
 		return super.setBlockName(name);
 	}
 	

@@ -1,14 +1,12 @@
 package io.github.phantamanta44.spaceres.block;
 
-import io.github.phantamanta44.spaceres.SpaceRes;
 import io.github.phantamanta44.spaceres.block.base.BlockNetworkable;
-import io.github.phantamanta44.spaceres.item.block.ItemBlockResonanceDevice;
+import io.github.phantamanta44.spaceres.item.block.ItemBlockStatelessDevice;
 import io.github.phantamanta44.spaceres.lib.LibLang;
 import io.github.phantamanta44.spaceres.lib.LibTier;
 import io.github.phantamanta44.spaceres.tile.TileInternalInterface;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -26,7 +24,7 @@ public class BlockInternalInterface extends BlockNetworkable {
 	
 	@Override
 	public Block setBlockName(String name) {
-		GameRegistry.registerBlock(this, ItemBlockResonanceDevice.class, name);
+		GameRegistry.registerBlock(this, ItemBlockStatelessDevice.class, name);
 		return super.setBlockName(name);
 	}
 

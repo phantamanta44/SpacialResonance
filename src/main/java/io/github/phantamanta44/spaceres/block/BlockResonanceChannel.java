@@ -1,7 +1,7 @@
 package io.github.phantamanta44.spaceres.block;
 
 import io.github.phantamanta44.spaceres.block.base.BlockNetworkable;
-import io.github.phantamanta44.spaceres.item.block.ItemBlockResonanceDevice;
+import io.github.phantamanta44.spaceres.item.block.ItemBlockResonanceChannel;
 import io.github.phantamanta44.spaceres.lib.LibLang;
 import io.github.phantamanta44.spaceres.render.RenderMap;
 import io.github.phantamanta44.spaceres.render.tile.ResonanceChannelRenderer;
@@ -32,7 +32,7 @@ public class BlockResonanceChannel extends BlockNetworkable {
 	
 	@Override
 	public Block setBlockName(String name) {
-		GameRegistry.registerBlock(this, ItemBlockResonanceDevice.class, name);
+		GameRegistry.registerBlock(this, ItemBlockResonanceChannel.class, name);
 		return super.setBlockName(name);
 	}
 	
