@@ -24,9 +24,9 @@ public class ItemBlockAcceptionBus extends ItemBlockEnergyStorageDevice {
 	
 	@Override
 	protected List<String> getTooltip(ItemStack stack, EntityPlayer player) {
-		NBTTagCompound tag = stack.getTagCompound() == null ? null : stack.getTagCompound().getCompoundTag(LibNBT.ITEM_BLOCK_STATE);
-		long eRate = tag == null ? 0L : tag.getLong(LibNBT.ENERGY_RATE_IN);
-		return tag == null ? null : Arrays.asList(
+		NBTTagCompound tag = getStoredBlockState(stack);
+		long eRate = tag.getLong(LibNBT.ENERGY_RATE_IN);
+		return Arrays.asList(
 			String.format(STORED_FMT,
 					LibLang.get(LibLang.TT_ENERGY),
 					PhantaUtil.formatInt(tag.getLong(LibNBT.ENERGY)),

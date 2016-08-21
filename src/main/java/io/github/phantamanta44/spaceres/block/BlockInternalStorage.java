@@ -3,19 +3,25 @@ package io.github.phantamanta44.spaceres.block;
 import io.github.phantamanta44.spaceres.SpaceRes;
 import io.github.phantamanta44.spaceres.block.base.BlockModSubs;
 import io.github.phantamanta44.spaceres.block.base.ItemBlockState;
+import io.github.phantamanta44.spaceres.item.base.ItemBlockPersistentState;
 import io.github.phantamanta44.spaceres.item.block.ItemBlockInternalStorage;
 import io.github.phantamanta44.spaceres.lib.LibLang;
+import io.github.phantamanta44.spaceres.lib.LibNBT;
 import io.github.phantamanta44.spaceres.lib.LibTier;
 import io.github.phantamanta44.spaceres.tile.TileInternalStorage;
 import io.github.phantamanta44.spaceres.util.PhantaUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cofh.api.block.IDismantleable;
@@ -37,6 +43,17 @@ public class BlockInternalStorage extends BlockModSubs implements ITileEntityPro
 	public Block setBlockName(String name) {
 		GameRegistry.registerBlock(this, ItemBlockInternalStorage.class, name);
 		return super.setBlockName(name);
+	}
+	
+	@Override
+	public void getSubBlocks(Item item, CreativeTabs tab, List stacks) {
+		for (int i = 0; i < subblockCount; i++) {
+			stacks.add(new ItemStack(item, 1, i));
+			ItemStack filled = new ItemStack(item, 1, i);
+			NBTTagCompound tag = ((ItemBlockPersistentState)item).getStoredBlockState(filled);
+			tag.setLong(LibNBT.ENERGY, tag.getLong(LibNBT.ENERGY_MAX));
+			stacks.add(filled);
+		}
 	}
 
 	@Override

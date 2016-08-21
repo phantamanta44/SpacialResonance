@@ -23,8 +23,8 @@ public class ItemBlockInternalStorage extends ItemBlockEnergyStorageDevice {
 	
 	@Override
 	protected List<String> getTooltip(ItemStack stack, EntityPlayer player) {
-		NBTTagCompound tag = stack.getTagCompound() == null ? null : stack.getTagCompound().getCompoundTag(LibNBT.ITEM_BLOCK_STATE);
-		return tag == null ? null : Collections.singletonList(String.format(MSG_FMT,
+		NBTTagCompound tag = getStoredBlockState(stack);
+		return Collections.singletonList(String.format(MSG_FMT,
 				LibLang.get(LibLang.TT_ENERGY),
 				PhantaUtil.formatInt(tag.getLong(LibNBT.ENERGY)),
 				PhantaUtil.formatInt(tag.getLong(LibNBT.ENERGY_MAX)))
