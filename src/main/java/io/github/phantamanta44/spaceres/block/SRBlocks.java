@@ -9,6 +9,8 @@ public final class SRBlocks {
 	public static Block busExp;
 	public static Block dist;
 	public static Block accum;
+	public static Block ifcInt;
+	public static Block intStg;
 	public static Block ore;
 	public static Block comp;
 	
@@ -18,6 +20,8 @@ public final class SRBlocks {
 		busExp = new BlockExportionBus();
 		dist = new BlockDistributionProcessor();
 		accum = new BlockAccumulationProcessor();
+		ifcInt = new BlockInternalInterface();
+		intStg = new BlockInternalStorage();
 		ore = new BlockOre();
 		comp = new BlockCompressed();
 	}

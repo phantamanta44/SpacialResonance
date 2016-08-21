@@ -2,15 +2,15 @@ package io.github.phantamanta44.spaceres.tile;
 
 import io.github.phantamanta44.spaceres.energy.INetworkable;
 import io.github.phantamanta44.spaceres.lib.LibTier;
-import io.github.phantamanta44.spaceres.tile.base.IEnergyTile;
 import io.github.phantamanta44.spaceres.tile.base.TileNetworkable;
+import io.github.phantamanta44.spaceres.util.IDeepEnergyStorage;
 import io.github.phantamanta44.spaceres.util.impl.ThrottledEnergy;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import cofh.api.energy.IEnergyReceiver;
 import cofh.api.energy.IEnergyStorage;
 
-public class TileAcceptionBus extends TileNetworkable implements IEnergyReceiver, IEnergyTile {
+public class TileAcceptionBus extends TileNetworkable implements IEnergyReceiver, IDeepEnergyStorage {
 	
 	private ThrottledEnergy rfBuffer;
 	
@@ -65,8 +65,13 @@ public class TileAcceptionBus extends TileNetworkable implements IEnergyReceiver
 	}
 	
 	@Override
-	public IEnergyStorage getEnergyStorage() {
-		return rfBuffer;
+	public long getTauStored() {
+		return rfBuffer.getEnergyStored();
+	}
+	
+	@Override
+	public long getTauMax() {
+		return rfBuffer.getMaxEnergyStored();
 	}
 	
 }

@@ -17,6 +17,22 @@ tile.spaceres:blockAccumulator0.name=Rudimentary Energy Accumulation Processor
 tile.spaceres:blockAccumulator1.name=Capacitive Energy Accumulation Processor
 tile.spaceres:blockAccumulator2.name=Low-Frequency Energy Accumulation Processor
 tile.spaceres:blockAccumulator3.name=High-Frequency Energy Accumulation Processor
+tile.spaceres:blockInterfaceInternal0.name=Rudimentary ISI Unit
+tile.spaceres:blockInterfaceInternal1.name=Mechanical TSI Unit
+tile.spaceres:blockInterfaceInternal2.name=Solid-State TSI Unit
+tile.spaceres:blockInterfaceInternal3.name=Stabilized TSI Unit
+tile.spaceres:blockInterfaceInternal4.name=Industrial TSI Unit
+tile.spaceres:blockInterfaceInternal5.name=Resonant TSI Unit
+tile.spaceres:blockInterfaceInternal6.name=Atomic TSI Unit
+tile.spaceres:blockInterfaceInternal7.name=Gluonic TSI Unit
+tile.spaceres:blockStorageInternal0.name=Rudimentary TSI Cell
+tile.spaceres:blockStorageInternal1.name=Mechanical TSI Cell
+tile.spaceres:blockStorageInternal2.name=Solid-State TSI Cell
+tile.spaceres:blockStorageInternal3.name=Stabilized TSI Cell
+tile.spaceres:blockStorageInternal4.name=Industrial TSI Cell
+tile.spaceres:blockStorageInternal5.name=Resonant TSI Cell
+tile.spaceres:blockStorageInternal6.name=Atomic TSI Cell
+tile.spaceres:blockStorageInternal7.name=Gluonic TSI Cell
 tile.spaceres:blockOre0.name=Cattierite Ore
 tile.spaceres:blockCompressed0.name=Compressed Cobalt
 
@@ -32,3 +48,9 @@ spaceres.itemInfo.expand=Press %s for more info.
 
 spaceres.tooltip.energyStored=Energy
 spaceres.tooltip.empty=Empty
+
+spaceres.chatMsg.netStats=Network Stats
+spaceres.chatMsg.netDevices=Networked Devices
+spaceres.chatMsg.netEnergy=Stored Energy
+spaceres.chatMsg.netCapacity=Total Capacity
+spaceres.chatMsg.netUsed=Percentage Used

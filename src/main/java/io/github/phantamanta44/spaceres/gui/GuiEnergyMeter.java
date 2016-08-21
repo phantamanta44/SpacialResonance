@@ -3,20 +3,18 @@ package io.github.phantamanta44.spaceres.gui;
 import io.github.phantamanta44.spaceres.gui.component.GCEnergyReservoir;
 import io.github.phantamanta44.spaceres.gui.component.GuiComponent;
 import io.github.phantamanta44.spaceres.lib.LibResource;
-import io.github.phantamanta44.spaceres.tile.base.IEnergyTile;
+import io.github.phantamanta44.spaceres.util.IDeepEnergyStorage;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
 
-import cofh.api.energy.IEnergyStorage;
-
 public class GuiEnergyMeter extends GuiTile {
 	
 	public GuiEnergyMeter(InventoryPlayer player, TileEntity tile) {
-		if (!(tile instanceof IEnergyTile))
+		if (!(tile instanceof IDeepEnergyStorage))
 			throw new IllegalArgumentException("Supplied tile isn't an energy storage!");
-		IEnergyStorage storage = ((IEnergyTile)tile).getEnergyStorage();
+		IDeepEnergyStorage storage = (IDeepEnergyStorage)tile;
 		comps.add(new GCEnergyReservoir(xSize / 2 - 84, ySize / 2 - 13, 168, 29, storage));
 		resLoc = LibResource.GUI_ENERGY_METER;
 	}

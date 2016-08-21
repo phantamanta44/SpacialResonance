@@ -2,8 +2,8 @@ package io.github.phantamanta44.spaceres.tile;
 
 import io.github.phantamanta44.spaceres.energy.INetworkable;
 import io.github.phantamanta44.spaceres.lib.LibTier;
-import io.github.phantamanta44.spaceres.tile.base.IEnergyTile;
 import io.github.phantamanta44.spaceres.tile.base.TileNetworkable;
+import io.github.phantamanta44.spaceres.util.IDeepEnergyStorage;
 import io.github.phantamanta44.spaceres.util.PhantaUtil;
 import io.github.phantamanta44.spaceres.util.impl.ThrottledEnergy;
 
@@ -16,7 +16,7 @@ import cofh.api.energy.IEnergyProvider;
 import cofh.api.energy.IEnergyReceiver;
 import cofh.api.energy.IEnergyStorage;
 
-public class TileExportionBus extends TileNetworkable implements IEnergyProvider, IEnergyTile {
+public class TileExportionBus extends TileNetworkable implements IEnergyProvider, IDeepEnergyStorage {
 	
 	private ThrottledEnergy rfBuffer;
 	
@@ -80,8 +80,13 @@ public class TileExportionBus extends TileNetworkable implements IEnergyProvider
 	}
 
 	@Override
-	public IEnergyStorage getEnergyStorage() {
-		return rfBuffer;
+	public long getTauStored() {
+		return rfBuffer.getEnergyStored();
+	}
+	
+	@Override
+	public long getTauMax() {
+		return rfBuffer.getMaxEnergyStored();
 	}
 
 }

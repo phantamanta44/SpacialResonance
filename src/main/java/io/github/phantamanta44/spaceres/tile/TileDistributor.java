@@ -25,6 +25,7 @@ public class TileDistributor extends TileNetworkable {
 	}
 	
 	public int distribute(int amt) {
+		int transLimit = maxTrans > 0 ? Math.min(amt, maxTrans) : amt;
 		if (equalMode) {
 			List<IStorageInterface> targets = network.stream()
 					.filter(u -> u instanceof IStorageInterface)
@@ -33,7 +34,7 @@ public class TileDistributor extends TileNetworkable {
 					.collect(Collectors.toList());
 			if (targets.isEmpty())
 				return 0;
-			int perTarget = (int)Math.floor((float)Math.min(amt, maxTrans) / (float)targets.size());
+			int perTarget = (int)Math.floor((float)transLimit / (float)targets.size());
 			int totalTrans = 0;
 			for (IStorageInterface target : targets)
 				totalTrans += target.offerEnergy(perTarget);
@@ -43,7 +44,7 @@ public class TileDistributor extends TileNetworkable {
 					u instanceof IStorageInterface && isNotFull((IStorageInterface)u));
 			if (target == null)
 				return 0;
-			return target.offerEnergy(Math.min(amt, maxTrans));
+			return target.offerEnergy(transLimit);
 		}
 	}
 	

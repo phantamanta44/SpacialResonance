@@ -3,13 +3,13 @@ package io.github.phantamanta44.spaceres.energy;
 
 public interface INetworkable {
 	
-	public ResonanceNetwork getNetwork();
+	ResonanceNetwork getNetwork();
 	
-	public void setNetwork(ResonanceNetwork network);
+	void setNetwork(ResonanceNetwork network);
 	
-	public interface INetworkUpdateHook {
+	interface INetworkUpdateHook {
 		
-		public void onNetworkUpdate();
+		void onNetworkUpdate();
 		
 	}
 

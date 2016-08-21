@@ -1,28 +1,26 @@
 package io.github.phantamanta44.spaceres.gui.component;
 
-import io.github.phantamanta44.spaceres.lib.LibLang;
 import io.github.phantamanta44.spaceres.lib.LibResource;
+import io.github.phantamanta44.spaceres.util.IDeepEnergyStorage;
 import io.github.phantamanta44.spaceres.util.PhantaUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 
 import org.lwjgl.opengl.GL11;
 
-import cofh.api.energy.IEnergyStorage;
-
 public class GCEnergyReservoir extends GuiComponent {
 	
 	private static final int[] COLOUR_A = new int[] {17, 111, 177}, COLOUR_B = new int[] {42, 157, 237};
-	private IEnergyStorage esource;
+	private IDeepEnergyStorage esource;
 	
-	public GCEnergyReservoir(int x, int y, int width, int length, IEnergyStorage ec) {
+	public GCEnergyReservoir(int x, int y, int width, int length, IDeepEnergyStorage ec) {
 		super(x, y, width, length);
 		esource = ec;
 	}
 
 	@Override
 	public void render(Minecraft mc, GuiScreen gui) {
-		float ePercent = (float)esource.getEnergyStored() / (float)esource.getMaxEnergyStored();
+		float ePercent = (float)esource.getTauStored() / (float)esource.getTauMax();
 		int indOffset = (int)((float)(width - 2) * ePercent);
 		mc.renderEngine.bindTexture(LibResource.TEX_GC_BASE);
 		gui.drawTexturedModalRect(x, y, 0, 0, 1, 1);
@@ -48,7 +46,7 @@ public class GCEnergyReservoir extends GuiComponent {
 	@Override
 	public void mouseOver(Minecraft mc, GuiScreen gui, int mX, int mY) {
 		if (PhantaUtil.isMouseOver(x, y, width, height, mX, mY))
-			drawHoveringText(gui, String.format("%d / %d RF", esource.getEnergyStored(), esource.getMaxEnergyStored()), mX, mY);
+			drawHoveringText(gui, String.format("%d / %d RF", esource.getTauStored(), esource.getTauMax()), mX, mY);
 	}
 	
 	private static int getColour(int n, int max) {

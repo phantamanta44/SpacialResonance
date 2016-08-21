@@ -73,4 +73,19 @@ public class PhantaUtil {
 		return new ItemStack(stack.getItem(), cnt, stack.getItemDamage());
 	}
 	
+	public static String formatInt(long num) {
+		try {
+			String toStr = Long.toString(num);
+			StringBuilder sb = new StringBuilder();
+			for (int i = toStr.length() % 3; i < toStr.length(); i += 3) {
+				if (i != 0)
+					sb.append(toStr.substring(Math.max(i - 3, 0), i)).append(",");
+			}
+			return sb.append(toStr.substring(Math.max(toStr.length() - 3, 0))).toString();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "errored!";
+		}
+	}
+	
 }

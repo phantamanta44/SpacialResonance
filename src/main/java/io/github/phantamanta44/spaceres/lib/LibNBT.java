@@ -6,6 +6,7 @@ public class LibNBT {
 	public static final String SLOT = "SlotID";
 	
 	public static final String DURABILITY = "Durability";
+	public static final String TIER = "DeviceTier";
 	
 	public static final String ENERGY = "EnergyStored";
 	public static final String ENERGY_MAX = "EnergyLimit";

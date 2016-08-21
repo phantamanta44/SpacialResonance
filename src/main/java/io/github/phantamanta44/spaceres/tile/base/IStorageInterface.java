@@ -2,12 +2,12 @@ package io.github.phantamanta44.spaceres.tile.base;
 
 public interface IStorageInterface {
 
-	public int getEnergyReservoir();
+	long getEnergyReservoir();
+		
+	long getReservoirSize();
 	
-	public int getReservoirSize();
+	int offerEnergy(int amt);
 	
-	public int offerEnergy(int amt);
-	
-	public int requestEnergy(int amt);
+	int requestEnergy(int amt);
 	
 }

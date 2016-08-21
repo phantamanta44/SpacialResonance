@@ -30,6 +30,7 @@ public class TileAccumulator extends TileNetworkable {
 	}
 
 	public int request(int amt) {
+		int transLimit = maxTrans > 0 ? Math.min(amt, maxTrans) : amt;
 		if (equalMode) {
 			List<IStorageInterface> targets = network.stream()
 					.filter(u -> u instanceof IStorageInterface)
@@ -38,7 +39,7 @@ public class TileAccumulator extends TileNetworkable {
 					.collect(Collectors.toList());
 			if (targets.isEmpty())
 				return 0;
-			int perTarget = (int)Math.floor((float)Math.min(amt, maxTrans) / (float)targets.size());
+			int perTarget = (int)Math.floor((float)transLimit / (float)targets.size());
 			int totalTrans = 0;
 			for (IStorageInterface target : targets)
 				totalTrans += target.requestEnergy(perTarget);
@@ -48,13 +49,14 @@ public class TileAccumulator extends TileNetworkable {
 					u instanceof IStorageInterface && isNotEmpty((IStorageInterface)u));
 			if (target == null)
 				return 0;
-			return target.requestEnergy(Math.min(amt, maxTrans));
+			return target.requestEnergy(transLimit);
 		}
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
+		tag.setInteger(LibNBT.ENERGY_RATE, maxTrans);
 		tag.setInteger(LibNBT.DEV_COUNT, devices);
 		tag.setBoolean(LibNBT.EQUAL_MODE, equalMode);
 	}
@@ -62,6 +64,7 @@ public class TileAccumulator extends TileNetworkable {
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
+		maxTrans = tag.getInteger(LibNBT.ENERGY_RATE);
 		devices = tag.getInteger(LibNBT.DEV_COUNT);
 		equalMode = tag.getBoolean(LibNBT.EQUAL_MODE);
 	}
