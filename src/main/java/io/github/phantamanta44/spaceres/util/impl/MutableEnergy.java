@@ -2,6 +2,7 @@ package io.github.phantamanta44.spaceres.util.impl;
 
 import io.github.phantamanta44.spaceres.lib.LibNBT;
 import io.github.phantamanta44.spaceres.util.INBTSerializable;
+import io.github.phantamanta44.spaceres.util.MathUtil;
 import net.minecraft.nbt.NBTTagCompound;
 import cofh.api.energy.IEnergyStorage;
 
@@ -21,7 +22,7 @@ public class MutableEnergy implements IEnergyStorage, INBTSerializable {
 	
 	@Override
 	public int receiveEnergy(int amt, boolean sim) {
-		int toTransfer = Math.min(amt, max - rf);
+		int toTransfer = MathUtil.clamp(amt, 0, max - rf);
 		if (!sim)
 			rf += toTransfer;
 		return toTransfer;
@@ -29,7 +30,7 @@ public class MutableEnergy implements IEnergyStorage, INBTSerializable {
 
 	@Override
 	public int extractEnergy(int amt, boolean sim) {
-		int toTransfer = Math.min(amt, rf);
+		int toTransfer = MathUtil.clamp(amt, 0, rf);
 		if (!sim)
 			rf -= toTransfer;
 		return toTransfer;

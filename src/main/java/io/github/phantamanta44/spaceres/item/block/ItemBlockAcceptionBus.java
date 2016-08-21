@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 
-public class ItemBlockAcceptionBus extends ItemBlockPersistentDevice {
+public class ItemBlockAcceptionBus extends ItemBlockEnergyStorageDevice {
 	
 	private static final String STORED_FMT = EnumChatFormatting.GRAY + "%s: " + EnumChatFormatting.DARK_GRAY + "%s / %s RF";
 	private static final String RATE_FMT = EnumChatFormatting.GRAY + "%s: " + EnumChatFormatting.DARK_GRAY + "%s RF/t";

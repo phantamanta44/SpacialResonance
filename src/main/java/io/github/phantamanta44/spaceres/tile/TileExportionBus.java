@@ -31,7 +31,7 @@ public class TileExportionBus extends TileNetworkable implements IEnergyProvider
 	@Override
 	protected void tick() {
 		super.tick();
-		if (!worldObj.isRemote && rfBuffer.getEnergyStored() != rfBuffer.getMaxEnergyStored() && network != null) {
+		if (!worldObj.isRemote && rfBuffer.getEnergyStored() < rfBuffer.getMaxEnergyStored() && network != null) {
 			INetworkable acc = network.findUnit(u -> u instanceof TileAccumulator);
 			if (acc != null)
 				rfBuffer.receiveEnergyTrue(((TileAccumulator)acc).request(rfBuffer.getMaxEnergyStored() - rfBuffer.getEnergyStored()), false);
@@ -42,7 +42,8 @@ public class TileExportionBus extends TileNetworkable implements IEnergyProvider
 				if (t instanceof IEnergyReceiver)
 					receivers.put((IEnergyReceiver)t, d.getOpposite());
 			});
-			int unitAmt = (int)Math.floor((float)rfBuffer.getOutputRate() / (float)receivers.size());
+			float outputRate = rfBuffer.getOutputRate() > -1 ? rfBuffer.getOutputRate() : rfBuffer.getEnergyStored();
+			int unitAmt = (int)Math.floor(outputRate / (float)receivers.size());
 			receivers.forEach((r, d) -> rfBuffer.extractEnergyTrue(r.receiveEnergy(d, Math.min(rfBuffer.getEnergyStored(), unitAmt), false), false));
 		}
 	}

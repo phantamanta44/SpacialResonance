@@ -7,6 +7,7 @@ import io.github.phantamanta44.spaceres.item.block.ItemBlockInternalStorage;
 import io.github.phantamanta44.spaceres.lib.LibLang;
 import io.github.phantamanta44.spaceres.lib.LibTier;
 import io.github.phantamanta44.spaceres.tile.TileInternalStorage;
+import io.github.phantamanta44.spaceres.util.PhantaUtil;
 
 import java.util.ArrayList;
 
@@ -54,7 +55,10 @@ public class BlockInternalStorage extends BlockModSubs implements ITileEntityPro
 
 	@Override
 	public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, int x, int y, int z, boolean returnDrops) {
-		return getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+		this.removedByPlayer(world, player, x, y, z, true);
+		if (!returnDrops)
+			compiledDrops.forEach(is -> PhantaUtil.dropItem(world, x, y, z, is));
+		return compiledDrops;
 	}
 
 	@Override
