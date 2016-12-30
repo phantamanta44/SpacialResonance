@@ -4,8 +4,8 @@ import cofh.api.energy.IEnergyStorage;
 
 public interface IDeepEnergyStorage {
 
-	long getTauStored();
-	
-	long getTauMax();
-	
+    long getTauStored();
+
+    long getTauMax();
+
 }

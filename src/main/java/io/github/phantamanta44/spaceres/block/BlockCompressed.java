@@ -10,20 +10,20 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BlockCompressed extends BlockModSubs {
 
-	public static final int COBALT = 0;
-	
-	public BlockCompressed() {
-		super(Material.iron, 1);
-		setHardness(4.4F);
-		setResistance(5F);
-		setHarvestLevel(LibCore.TOOL_PICK, 2);
-		setBlockName(LibLang.BLOCK_COMP_NAME);
-	}
-	
-	@Override
-	public Block setBlockName(String name) {
-		GameRegistry.registerBlock(this, ItemBlockResource.class, name);
-		return super.setBlockName(name);
-	}
-	
+    public static final int COBALT = 0;
+
+    public BlockCompressed() {
+        super(Material.iron, 1);
+        setHardness(4.4F);
+        setResistance(5F);
+        setHarvestLevel(LibCore.TOOL_PICK, 2);
+        setBlockName(LibLang.BLOCK_COMP_NAME);
+    }
+
+    @Override
+    public Block setBlockName(String name) {
+        GameRegistry.registerBlock(this, ItemBlockResource.class, name);
+        return super.setBlockName(name);
+    }
+
 }

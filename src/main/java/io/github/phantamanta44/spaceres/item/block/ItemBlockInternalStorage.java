@@ -14,21 +14,21 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 
 public class ItemBlockInternalStorage extends ItemBlockEnergyStorageDevice {
-	
-	private static final String MSG_FMT = EnumChatFormatting.GRAY + "%s: " + EnumChatFormatting.DARK_GRAY + "%s / %s RF";
 
-	public ItemBlockInternalStorage(Block block) {
-		super(block);
-	}
-	
-	@Override
-	protected List<String> getTooltip(ItemStack stack, EntityPlayer player) {
-		NBTTagCompound tag = getStoredBlockState(stack);
-		return Collections.singletonList(String.format(MSG_FMT,
-				LibLang.get(LibLang.TT_ENERGY),
-				PhantaUtil.formatInt(tag.getLong(LibNBT.ENERGY)),
-				PhantaUtil.formatInt(tag.getLong(LibNBT.ENERGY_MAX)))
-		);
-	}
+    private static final String MSG_FMT = EnumChatFormatting.GRAY + "%s: " + EnumChatFormatting.DARK_GRAY + "%s / %s RF";
+
+    public ItemBlockInternalStorage(Block block) {
+        super(block);
+    }
+
+    @Override
+    protected List<String> getTooltip(ItemStack stack, EntityPlayer player) {
+        NBTTagCompound tag = getStoredBlockState(stack);
+        return Collections.singletonList(String.format(MSG_FMT,
+                LibLang.get(LibLang.TT_ENERGY),
+                PhantaUtil.formatInt(tag.getLong(LibNBT.ENERGY)),
+                PhantaUtil.formatInt(tag.getLong(LibNBT.ENERGY_MAX)))
+        );
+    }
 
 }

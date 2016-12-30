@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBlockResource extends ItemBlockWithMetadataAndName {
 
-	public ItemBlockResource(Block block) {
-		super(block);
-	}
+    public ItemBlockResource(Block block) {
+        super(block);
+    }
 
 }

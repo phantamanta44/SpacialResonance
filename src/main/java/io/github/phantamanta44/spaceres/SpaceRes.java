@@ -18,46 +18,46 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = LibCore.MODID, version = LibCore.MODVER)
 public class SpaceRes {
-	
-	@Instance(LibCore.MODID)
-	public static SpaceRes instance;
-	
-	@SidedProxy(clientSide = "io.github.phantamanta44.spaceres.proxy.ClientProxy", serverSide = "io.github.phantamanta44.spaceres.proxy.CommonProxy")
-	public static CommonProxy proxy;
-	
-	public static CreativeTabs tabSpaceRes = new CreativeTabSR();
-	
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		proxy.onPreInit();
-	}
-	
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
-		proxy.onInit();
-	}
-	
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
-		proxy.onPostInit();
-	}
-	
-	public static class CreativeTabSR extends CreativeTabs {
-		
-		public CreativeTabSR() {
-			super(LibLang.CREATIVE_TAB_NAME);
-		}
-		
-		@Override
-		public ItemStack getIconItemStack() {
-			return new ItemStack(SRItems.itemMat, 1, ItemMaterial.TAU_CONV);
-		}
-		
-		@Override
-		public Item getTabIconItem() {
-			return SRItems.itemMat;
-		}
-		
-	}
-	
+
+    @Instance(LibCore.MODID)
+    public static SpaceRes instance;
+
+    @SidedProxy(clientSide = "io.github.phantamanta44.spaceres.proxy.ClientProxy", serverSide = "io.github.phantamanta44.spaceres.proxy.CommonProxy")
+    public static CommonProxy proxy;
+
+    public static CreativeTabs tabSpaceRes = new CreativeTabSR();
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        proxy.onPreInit();
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+        proxy.onInit();
+    }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        proxy.onPostInit();
+    }
+
+    public static class CreativeTabSR extends CreativeTabs {
+
+        public CreativeTabSR() {
+            super(LibLang.CREATIVE_TAB_NAME);
+        }
+
+        @Override
+        public ItemStack getIconItemStack() {
+            return new ItemStack(SRItems.itemMat, 1, ItemMaterial.TAU_CONV);
+        }
+
+        @Override
+        public Item getTabIconItem() {
+            return SRItems.itemMat;
+        }
+
+    }
+
 }

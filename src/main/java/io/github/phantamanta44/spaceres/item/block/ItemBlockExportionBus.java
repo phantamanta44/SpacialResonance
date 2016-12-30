@@ -14,27 +14,27 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 
 public class ItemBlockExportionBus extends ItemBlockEnergyStorageDevice {
-	
-	private static final String STORED_FMT = EnumChatFormatting.GRAY + "%s: " + EnumChatFormatting.DARK_GRAY + "%s / %s RF";
-	private static final String RATE_FMT = EnumChatFormatting.GRAY + "%s: " + EnumChatFormatting.DARK_GRAY + "%s RF/t";
 
-	public ItemBlockExportionBus(Block block) {
-		super(block);
-	}
-	
-	@Override
-	protected List<String> getTooltip(ItemStack stack, EntityPlayer player) {
-		NBTTagCompound tag = getStoredBlockState(stack);
-		long eRate = tag.getLong(LibNBT.ENERGY_RATE_OUT);
-		return Arrays.asList(
-			String.format(STORED_FMT,
-					LibLang.get(LibLang.TT_ENERGY),
-					PhantaUtil.formatInt(tag.getLong(LibNBT.ENERGY)),
-					PhantaUtil.formatInt(tag.getLong(LibNBT.ENERGY_MAX))),
-			String.format(RATE_FMT,
-					LibLang.get(LibLang.TT_ENERGY_RATE),
-					eRate == -1 ? LibLang.get(LibLang.TT_INF) : PhantaUtil.formatInt(eRate))
-		);
-	}
+    private static final String STORED_FMT = EnumChatFormatting.GRAY + "%s: " + EnumChatFormatting.DARK_GRAY + "%s / %s RF";
+    private static final String RATE_FMT = EnumChatFormatting.GRAY + "%s: " + EnumChatFormatting.DARK_GRAY + "%s RF/t";
+
+    public ItemBlockExportionBus(Block block) {
+        super(block);
+    }
+
+    @Override
+    protected List<String> getTooltip(ItemStack stack, EntityPlayer player) {
+        NBTTagCompound tag = getStoredBlockState(stack);
+        long eRate = tag.getLong(LibNBT.ENERGY_RATE_OUT);
+        return Arrays.asList(
+            String.format(STORED_FMT,
+                    LibLang.get(LibLang.TT_ENERGY),
+                    PhantaUtil.formatInt(tag.getLong(LibNBT.ENERGY)),
+                    PhantaUtil.formatInt(tag.getLong(LibNBT.ENERGY_MAX))),
+            String.format(RATE_FMT,
+                    LibLang.get(LibLang.TT_ENERGY_RATE),
+                    eRate == -1 ? LibLang.get(LibLang.TT_INF) : PhantaUtil.formatInt(eRate))
+        );
+    }
 
 }

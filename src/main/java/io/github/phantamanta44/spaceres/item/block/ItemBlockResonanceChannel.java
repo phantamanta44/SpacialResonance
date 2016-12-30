@@ -5,8 +5,8 @@ import net.minecraft.block.Block;
 
 public class ItemBlockResonanceChannel extends ItemBlockWithMetadataAndName {
 
-	public ItemBlockResonanceChannel(Block block) {
-		super(block);
-	}
+    public ItemBlockResonanceChannel(Block block) {
+        super(block);
+    }
 
 }

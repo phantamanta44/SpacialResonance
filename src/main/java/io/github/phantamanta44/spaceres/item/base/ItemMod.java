@@ -12,26 +12,26 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMod extends Item {
 
-	public ItemMod() {
-		super();
-		setCreativeTab(SpaceRes.tabSpaceRes);
-	}
+    public ItemMod() {
+        super();
+        setCreativeTab(SpaceRes.tabSpaceRes);
+    }
 
-	@Override
-	public Item setUnlocalizedName(String name) {
-		GameRegistry.registerItem(this, name);
-		return super.setUnlocalizedName(name);
-	}
+    @Override
+    public Item setUnlocalizedName(String name) {
+        GameRegistry.registerItem(this, name);
+        return super.setUnlocalizedName(name);
+    }
 
-	@Override
-	public String getUnlocalizedNameInefficiently(ItemStack itemstack) {
-		return super.getUnlocalizedNameInefficiently(itemstack).replaceAll("item\\.", "item." + LibCore.MODPREF);
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister registry) {
-		itemIcon = IconHelper.forItem(registry, this);
-	}
+    @Override
+    public String getUnlocalizedNameInefficiently(ItemStack itemstack) {
+        return super.getUnlocalizedNameInefficiently(itemstack).replaceAll("item\\.", "item." + LibCore.MODPREF);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister registry) {
+        itemIcon = IconHelper.forItem(registry, this);
+    }
 
 }

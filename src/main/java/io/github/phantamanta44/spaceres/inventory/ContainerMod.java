@@ -8,29 +8,29 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public abstract class ContainerMod<T extends IInventory> extends Container {
-	
-	protected T tile;
 
-	protected void addPlayerInventory(InventoryPlayer ipl) {
-		for (int i = 0; i < 3; ++i) {
-			for (int j = 0; j < 9; ++j)
-				this.addSlotToContainer(new Slot(ipl, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-		}
+    protected T tile;
 
-		for (int i = 0; i < 9; ++i)
-			this.addSlotToContainer(new Slot(ipl, i, 8 + i * 18, 142));
-	}
-	
-	public T getTile() {
-		return tile;
-	}
+    protected void addPlayerInventory(InventoryPlayer ipl) {
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 9; ++j)
+                this.addSlotToContainer(new Slot(ipl, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+        }
 
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return tile.isUseableByPlayer(player);
-	}
-	
-	@Override
-	public abstract ItemStack transferStackInSlot(EntityPlayer player, int slot);
-	
+        for (int i = 0; i < 9; ++i)
+            this.addSlotToContainer(new Slot(ipl, i, 8 + i * 18, 142));
+    }
+
+    public T getTile() {
+        return tile;
+    }
+
+    @Override
+    public boolean canInteractWith(EntityPlayer player) {
+        return tile.isUseableByPlayer(player);
+    }
+
+    @Override
+    public abstract ItemStack transferStackInSlot(EntityPlayer player, int slot);
+
 }

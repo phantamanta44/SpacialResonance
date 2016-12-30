@@ -2,7 +2,7 @@ package io.github.phantamanta44.spaceres.lib;
 
 public final class LibCore {
 
-	public static final String MODID = "spaceres";
+    public static final String MODID = "spaceres";
     public static final String MODVER = "1.0";
     public static final String MODPREF = MODID + ":";
     

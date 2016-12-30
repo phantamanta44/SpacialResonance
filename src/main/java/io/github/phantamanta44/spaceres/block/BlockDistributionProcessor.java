@@ -13,24 +13,24 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BlockDistributionProcessor extends BlockNetworkable {
 
-	public static final int LEAD = 0, INVAR = 1, ELECTRUM = 2, ENDER = 3;
-	
-	public BlockDistributionProcessor() {
-		super(Material.iron, 8);
-		setHardness(5F);
-		setResistance(7.5F);
-		setBlockName(LibLang.BLOCK_DIST_NAME);
-	}
-	
-	@Override
-	public Block setBlockName(String name) {
-		GameRegistry.registerBlock(this, ItemBlockStatelessDevice.class, name);
-		return super.setBlockName(name);
-	}
+    public static final int LEAD = 0, INVAR = 1, ELECTRUM = 2, ENDER = 3;
 
-	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileDistributor(LibTier.getTier8(meta));
-	}
-	
+    public BlockDistributionProcessor() {
+        super(Material.iron, 8);
+        setHardness(5F);
+        setResistance(7.5F);
+        setBlockName(LibLang.BLOCK_DIST_NAME);
+    }
+
+    @Override
+    public Block setBlockName(String name) {
+        GameRegistry.registerBlock(this, ItemBlockStatelessDevice.class, name);
+        return super.setBlockName(name);
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World world, int meta) {
+        return new TileDistributor(LibTier.getTier8(meta));
+    }
+
 }

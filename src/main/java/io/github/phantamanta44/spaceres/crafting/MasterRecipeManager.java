@@ -7,21 +7,21 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public final class MasterRecipeManager {
-	
-	public static void addRecipes() {
-		IngotRecipeManager.addRecipes();
-	}
 
-	protected static void addSmelting(ItemStack output, ItemStack input, float xp) {
-		GameRegistry.addSmelting(input, output, xp);
-	}
-	
-	protected static void addOreDictRecipe(ItemStack output, Object... recipe) {
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(output, recipe));
-	}
+    public static void addRecipes() {
+        IngotRecipeManager.addRecipes();
+    }
 
-	protected static void addShapelessOreDictRecipe(ItemStack output, Object... recipe) {
-		CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(output, recipe));
-	}
-	
+    protected static void addSmelting(ItemStack output, ItemStack input, float xp) {
+        GameRegistry.addSmelting(input, output, xp);
+    }
+
+    protected static void addOreDictRecipe(ItemStack output, Object... recipe) {
+        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(output, recipe));
+    }
+
+    protected static void addShapelessOreDictRecipe(ItemStack output, Object... recipe) {
+        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(output, recipe));
+    }
+
 }

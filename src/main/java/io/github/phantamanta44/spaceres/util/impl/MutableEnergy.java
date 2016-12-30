@@ -8,54 +8,54 @@ import cofh.api.energy.IEnergyStorage;
 
 public class MutableEnergy implements IEnergyStorage, INBTSerializable {
 
-	protected int rf, max;
-	
-	public MutableEnergy(int max) {
-		this.max = max;
-		this.rf = 0;
-	}
-	
-	public MutableEnergy(int max, int init) {
-		this.max = max;
-		this.rf = init;
-	}
-	
-	@Override
-	public int receiveEnergy(int amt, boolean sim) {
-		int toTransfer = MathUtil.clamp(amt, 0, max - rf);
-		if (!sim)
-			rf += toTransfer;
-		return toTransfer;
-	}
+    protected int rf, max;
 
-	@Override
-	public int extractEnergy(int amt, boolean sim) {
-		int toTransfer = MathUtil.clamp(amt, 0, rf);
-		if (!sim)
-			rf -= toTransfer;
-		return toTransfer;
-	}
+    public MutableEnergy(int max) {
+        this.max = max;
+        this.rf = 0;
+    }
 
-	@Override
-	public int getEnergyStored() {
-		return rf;
-	}
+    public MutableEnergy(int max, int init) {
+        this.max = max;
+        this.rf = init;
+    }
 
-	@Override
-	public int getMaxEnergyStored() {
-		return max;
-	}
+    @Override
+    public int receiveEnergy(int amt, boolean sim) {
+        int toTransfer = MathUtil.clamp(amt, 0, max - rf);
+        if (!sim)
+            rf += toTransfer;
+        return toTransfer;
+    }
 
-	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		tag.setInteger(LibNBT.ENERGY, this.rf);
-		tag.setInteger(LibNBT.ENERGY_MAX, this.max);
-	}
+    @Override
+    public int extractEnergy(int amt, boolean sim) {
+        int toTransfer = MathUtil.clamp(amt, 0, rf);
+        if (!sim)
+            rf -= toTransfer;
+        return toTransfer;
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag) {
-		this.rf = tag.getInteger(LibNBT.ENERGY);
-		this.max = tag.getInteger(LibNBT.ENERGY_MAX);
-	}
+    @Override
+    public int getEnergyStored() {
+        return rf;
+    }
+
+    @Override
+    public int getMaxEnergyStored() {
+        return max;
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+        tag.setInteger(LibNBT.ENERGY, this.rf);
+        tag.setInteger(LibNBT.ENERGY_MAX, this.max);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        this.rf = tag.getInteger(LibNBT.ENERGY);
+        this.max = tag.getInteger(LibNBT.ENERGY_MAX);
+    }
 
 }

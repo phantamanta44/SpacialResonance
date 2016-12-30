@@ -25,51 +25,51 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
-	
-	public void onPreInit() {
-		SRItems.init();
-		SRBlocks.init();
-		registerTileEntities();
-		registerGuis();
-	}
-	
-	public void onInit() {
-		MasterRecipeManager.addRecipes();
-		NetworkRegistry.INSTANCE.registerGuiHandler(SpaceRes.instance, new GuiHandler());
-		GameRegistry.registerWorldGenerator(new OreGenSimple(new BlockWithMeta(SRBlocks.ore, BlockOre.COBALT), 0, new BlockWithMeta(Blocks.stone), 1, 36, 10, 4) , 5);
-	}
-	
-	public void onPostInit() {
-		// NO-OP
-	}
-	
-	protected void registerTileEntities() {
-		addTEMapping(TileAcceptionBus.class);
-		addTEMapping(TileExportionBus.class);
-		addTEMapping(TileDistributor.class);
-		addTEMapping(TileAccumulator.class);
-		addTEMapping(TileResonanceChannel.class);
-		addTEMapping(TileInternalInterface.class);
-		addTEMapping(TileInternalStorage.class);
-	}
-	
-	protected void registerGuis() {
-		registerGui(TileAcceptionBus.class, GuiEnergyMeter.class);
-		registerGui(TileExportionBus.class, GuiEnergyMeter.class);
-		registerGui(TileInternalStorage.class, GuiEnergyMeter.class);
-	}
-	
-	protected void registerGui(Class<? extends TileEntity> tile, Class<? extends GuiScreen> gui) {
-		GuiHandler.guiMap.put(tile, gui);
-	}
-	
-	protected void registerContainer(Class<? extends TileEntity> tile, Class<? extends GuiContainer> gui, Class<? extends Container> cont) {
-		registerGui(tile, gui);
-		GuiHandler.containerMap.put(tile, cont);
-	}
-	
-	protected void addTEMapping(Class c) {
-		TileEntity.addMapping(c, c.getName());
-	}
-	
+
+    public void onPreInit() {
+        SRItems.init();
+        SRBlocks.init();
+        registerTileEntities();
+        registerGuis();
+    }
+
+    public void onInit() {
+        MasterRecipeManager.addRecipes();
+        NetworkRegistry.INSTANCE.registerGuiHandler(SpaceRes.instance, new GuiHandler());
+        GameRegistry.registerWorldGenerator(new OreGenSimple(new BlockWithMeta(SRBlocks.ore, BlockOre.COBALT), 0, new BlockWithMeta(Blocks.stone), 1, 36, 10, 4) , 5);
+    }
+
+    public void onPostInit() {
+        // NO-OP
+    }
+
+    protected void registerTileEntities() {
+        addTEMapping(TileAcceptionBus.class);
+        addTEMapping(TileExportionBus.class);
+        addTEMapping(TileDistributor.class);
+        addTEMapping(TileAccumulator.class);
+        addTEMapping(TileResonanceChannel.class);
+        addTEMapping(TileInternalInterface.class);
+        addTEMapping(TileInternalStorage.class);
+    }
+
+    protected void registerGuis() {
+        registerGui(TileAcceptionBus.class, GuiEnergyMeter.class);
+        registerGui(TileExportionBus.class, GuiEnergyMeter.class);
+        registerGui(TileInternalStorage.class, GuiEnergyMeter.class);
+    }
+
+    protected void registerGui(Class<? extends TileEntity> tile, Class<? extends GuiScreen> gui) {
+        GuiHandler.guiMap.put(tile, gui);
+    }
+
+    protected void registerContainer(Class<? extends TileEntity> tile, Class<? extends GuiContainer> gui, Class<? extends Container> cont) {
+        registerGui(tile, gui);
+        GuiHandler.containerMap.put(tile, cont);
+    }
+
+    protected void addTEMapping(Class c) {
+        TileEntity.addMapping(c, c.getName());
+    }
+
 }
