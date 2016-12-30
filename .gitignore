@@ -103,6 +103,7 @@ local.properties
 build/
 classes/
 run/
+eclipse/
 gradle.properties
 
 # Gradle Generated Files
